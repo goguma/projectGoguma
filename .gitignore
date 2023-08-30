@@ -166,4 +166,5 @@ projectGoguma/home/__pycache__/
 projectGoguma/projectGoguma/__pycache__/
 projectGoguma/projectGoguma/settings/__pycache__/
 projectGoguma/search/__pycache__/
-
+projectGoguma/home/migrations/__pycache__/
+projectGoguma/static/

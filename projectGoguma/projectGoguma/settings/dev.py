@@ -1,16 +1,30 @@
+# import environ
+# import os
 from .base import *
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# env = environ.Env()
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-x1ffogq@81y29#oceam97-!s#+ndyug3gj+n!q3ww9@*w77jxg"
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# print(f'BASE_DIR : {BASE_DIR}')
+# environ.Env.read_env(os.path.join(BASE_DIR, '../../.env.dev'))
 
-# SECURITY WARNING: define the correct hosts in production!
-ALLOWED_HOSTS = ["*"]
+SECRET_KEY = os.environ.get("SECRET_KEY")
+DEBUG = os.environ.get("DEBUG")
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# Database PostgreSQL
+DATABASES = {
+    'default': {
+        'ENGINE': os.environ.get("SQL_ENGINE"),
+        'NAME': os.environ.get("SQL_DATABASE"),
+        'USER': os.environ.get("SQL_USER"),
+        'PASSWORD': os.environ.get("SQL_PASSWORD"),
+        'HOST': os.environ.get("SQL_HOST"),
+        'PORT': os.environ.get("SQL_PORT"),
+    }
+}
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 try:
     from .local import *
